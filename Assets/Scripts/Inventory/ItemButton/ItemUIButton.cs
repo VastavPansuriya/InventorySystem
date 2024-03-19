@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +18,10 @@ public class ItemUIButton : MonoBehaviour
 
     private void Start()
     {
-        button.onClick.AddListener(() => { OnItemUIButtonPress?.Invoke(this, itemSO); });
+        button.onClick.AddListener(() =>
+        {
+            OnItemUIButtonPress?.Invoke(this, itemSO);
+        });
     }
 
     public void SetSlot(SlotController slotController)

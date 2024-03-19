@@ -9,7 +9,7 @@ public class InfoTab : MonoBehaviour
     [SerializeField] private TMP_Text sellPrice;
     [SerializeField] private TMP_Text buyPrice;
 
-    private void Start()
+    private void Awake()
     {
         ItemUIButton.OnItemUIButtonPress += ItemUIButton_OnItemUIButtonPress;
         Hide();

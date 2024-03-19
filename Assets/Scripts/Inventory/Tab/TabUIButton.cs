@@ -13,6 +13,7 @@ public class TabUIButton : MonoBehaviour
 
     private void Awake()
     {
+
         tabButton.onClick.AddListener(() => { OnTabChange?.Invoke(itemType); });
     }
 

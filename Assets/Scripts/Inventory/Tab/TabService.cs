@@ -34,8 +34,21 @@ public class TabService
     {
         this.tabServiceEditModeData = tabServiceEditModeData;
         this.playerInventoryService = playerInventoryService;
-        TabUIButton.OnTabChange += TabUIButton_OnTabChange;
         this.shopService = shopService;
+
+        TabUIButton.OnTabChange += TabUIButton_OnTabChange;
+        InputServiceManager.OnInventoryPanelOpen += InputServiceManager_OnInventoryPanelOpen;
+        InputServiceManager.OnShopPanelOpen += InputServiceManager_OnShopPanelOpen;
+    }
+
+    private void InputServiceManager_OnShopPanelOpen()
+    {
+        HideInfoTab(inventoryPanelType);
+    }
+
+    private void InputServiceManager_OnInventoryPanelOpen()
+    {
+        HideInfoTab(inventoryPanelType);
     }
 
     private void TabUIButton_OnTabChange(ItemType itemType)
@@ -128,7 +141,6 @@ public class TabService
     public void SetInventoryPanel()
     {
         inventoryPanelType = InventoryPanelType.Inventory;
-
         ReInitSlots(ItemType.Materials);
     }
     public void HideInfoTab(InventoryPanelType inventoryPanelType)
@@ -154,6 +166,8 @@ public class TabService
     ~TabService()
     {
         TabUIButton.OnTabChange -= TabUIButton_OnTabChange;
+        InputServiceManager.OnInventoryPanelOpen -= InputServiceManager_OnInventoryPanelOpen;
+        InputServiceManager.OnShopPanelOpen -= InputServiceManager_OnShopPanelOpen;
     }
 
     public enum InventoryPanelType

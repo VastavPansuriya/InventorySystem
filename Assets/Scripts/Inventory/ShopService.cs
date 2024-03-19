@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopService
 {
+    public static event Action<ItemSO> OnBuySomething;
+    public static event Action<ItemSO> OnSellSomething;
+
     private Button sellButton;
     private Button buyButton;
 
@@ -46,6 +50,7 @@ public class ShopService
             currSelectedItem.Quantity++;
             currItemUIButton.GetSlotController().SetFilled(currSelectedItem);
             CurrencyService.OnWantRemoveCoin?.Invoke(currSelectedItem.buyingPrice);
+            OnBuySomething?.Invoke(currSelectedItem);
         }
         else
         {
@@ -65,6 +70,7 @@ public class ShopService
             currSelectedItem.Quantity--;
             currItemUIButton.GetSlotController().SetFilled(currSelectedItem);
             CurrencyService.OnWantAddCoin?.Invoke(currSelectedItem.sellingPrice);
+            OnSellSomething?.Invoke(currSelectedItem);
         }
     }
 

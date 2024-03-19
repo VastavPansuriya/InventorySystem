@@ -42,9 +42,10 @@ public class GameService : GenericMonoSingleton<GameService>
 
         CurrencyService = new CurrencyService();
 
-        PlayerInventoryService = new PlayerInventoryService(playerInventoryServiceData);
 
         ShopService = new ShopService(sellButton, buyButton);
+
+        PlayerInventoryService = new PlayerInventoryService(playerInventoryServiceData);
 
         TabService = new TabService(tabServiceEditModeData, ShopService,PlayerInventoryService);
 
@@ -55,6 +56,7 @@ public class GameService : GenericMonoSingleton<GameService>
         InputServiceManager = new InputServiceManager(UIService);
 
         ShopService.InitService(TabService);
+        PlayerInventoryService.InitService(TabService);
     }
 
     private void Start()

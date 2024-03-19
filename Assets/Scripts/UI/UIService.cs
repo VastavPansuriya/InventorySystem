@@ -18,6 +18,8 @@ public class UIService
 
         CurrencyService.OnWantAddCoin += SetCoinText;
         CurrencyService.OnWantRemoveCoin += SetCoinText;
+
+        HideBoth();
     }
 
     private void SetCoinText(int amount)
@@ -39,6 +41,12 @@ public class UIService
         shopPanel.SetActive(true);
         inventoryPanel.SetActive(false);
         tabService.SetShopPanel();
+    }
+
+    public void HideBoth()
+    {
+        shopPanel.SetActive(false);
+        inventoryPanel.SetActive(false);
     }
 
     ~UIService()

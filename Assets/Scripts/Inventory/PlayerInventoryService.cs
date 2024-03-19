@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerInventoryService
@@ -10,13 +8,13 @@ public class PlayerInventoryService
     public class PlayerInventoryServiceData
     {
         public int maxCarriyingWaight;
-        public int itemCount = -1;
-        private Button addItemButton;
+        public Button addItemButton;
     }
 
+    public int itemCount = -1;
     private ItemSO currSelectedItem;
-
     private PlayerInventoryServiceData playerInventoryServiceData;
+    private TabService tabService;
     private List<SlotController> allPlayerSlots;
 
     public int MaxCarriyingWaight { get => playerInventoryServiceData.maxCarriyingWaight; private set => playerInventoryServiceData.maxCarriyingWaight = value; }
@@ -24,13 +22,48 @@ public class PlayerInventoryService
     public PlayerInventoryService(PlayerInventoryServiceData playerInventoryServiceData)
     {
         this.playerInventoryServiceData = playerInventoryServiceData;
-        ItemUIButton.OnItemUIButtonPress += ItemUIButton_OnItemUIButtonPress;
+        this.playerInventoryServiceData.addItemButton.onClick.AddListener(AddItem);
 
+        ItemUIButton.OnItemUIButtonPress += ItemUIButton_OnItemUIButtonPress;
+        ShopService.OnBuySomething += ShopService_OnBuySomething;
+        ShopService.OnSellSomething += ShopService_OnSellSomething;
+    }
+
+    private void ShopService_OnSellSomething(ItemSO obj)
+    {
+        SlotController slotController = allPlayerSlots.Find(item => item.GetItemSO().Equals(obj));
+        slotController.SetFilled(obj);
+    }
+
+    private void ShopService_OnBuySomething(ItemSO obj)
+    {
+        SlotController slotController = null;
+        foreach (var item in allPlayerSlots)
+        {
+            if(item.GetItemSO() == obj)
+            {
+                slotController = item;
+                break;
+            }
+        }
+
+        if (slotController == null)
+        {
+            return;
+        }
+        slotController.SetFilled(obj);
+    }
+
+    public void InitService(TabService tabService)
+    {
+        this.tabService = tabService;
     }
 
     private void ItemUIButton_OnItemUIButtonPress(ItemUIButton arg1, ItemSO currSelectedItem)
     {
-        this.currSelectedItem = currSelectedItem;
+
+        if (!tabService.IsShopPanelSelected())
+            this.currSelectedItem = currSelectedItem;
     }
 
     public void InitSlots(List<SlotController> playerSlots)
@@ -38,14 +71,24 @@ public class PlayerInventoryService
         allPlayerSlots = playerSlots;
     }
 
-    public void AddItem(ItemSO itemSO)
+    public void AddItem()
     {
-        if (itemSO.weight > playerInventoryServiceData.maxCarriyingWaight)
+        if (currSelectedItem.weight > playerInventoryServiceData.maxCarriyingWaight)
         {
-            Debug.Log("Player Waight is full you can't add item");
             return;
         }
-        allPlayerSlots[playerInventoryServiceData.itemCount].SetFilled(itemSO);
+
+        foreach (SlotController slotController in allPlayerSlots)
+        {
+            if (slotController.GetItemSO() == currSelectedItem)
+            {
+                return;
+            }
+        }
+
+        itemCount++;
+
+        allPlayerSlots[itemCount].SetFilled(currSelectedItem);
     }
 
     public void RemoveItem(ItemSO itemSO)
@@ -65,12 +108,12 @@ public class PlayerInventoryService
             {
                 selectedObjIndex = i;
                 item.SetEmpty();
-                playerInventoryServiceData.itemCount--;
+                itemCount--;
             }
 
             if (i > selectedObjIndex)
             {
-                if (i == playerInventoryServiceData.itemCount)
+                if (i == itemCount)
                 {
                     return;
                 }
@@ -89,5 +132,7 @@ public class PlayerInventoryService
     ~PlayerInventoryService()
     {
         ItemUIButton.OnItemUIButtonPress -= ItemUIButton_OnItemUIButtonPress;
+        ShopService.OnBuySomething -= ShopService_OnBuySomething;
+        ShopService.OnSellSomething -= ShopService_OnSellSomething;
     }
 }
