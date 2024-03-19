@@ -1,0 +1,65 @@
+{
+    "name": "UIInput",
+    "maps": [
+        {
+            "name": "UIInput",
+            "id": "4ee1510f-6034-4ff4-81dd-3bb1ee4ff98c",
+            "actions": [
+                {
+                    "name": "InventoryOpen",
+                    "type": "Button",
+                    "id": "39c97336-953e-4e78-9c02-7bc9e08cca2c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShopOpen",
+                    "type": "Button",
+                    "id": "14773c4d-9c1d-4736-9974-e5d0873901df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "74576543-b80f-493c-834a-3e5147a4bd15",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InventoryOpen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab6dfb14-cead-49dc-8bef-33aec29fa56b",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InventoryOpen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2dac9ecc-71b5-432c-8f86-9daa63a08a1c",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShopOpen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
