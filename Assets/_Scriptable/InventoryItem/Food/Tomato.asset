@@ -17,6 +17,6 @@ MonoBehaviour:
   itemDescription: Helps you tp gain health in Fight
   buyingPrice: 100
   sellingPrice: 90
-  weight: 10
-  rarity: 2
+  weight: 50
+  rarity: 0
   Quantity: 10

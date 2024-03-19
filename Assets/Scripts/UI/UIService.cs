@@ -24,7 +24,7 @@ public class UIService
 
     private void SetCoinText(int amount)
     {
-        coinText.text = GlobleData.TotalCurrency.ToString();
+        coinText.text = GlobalData.TotalCurrency.ToString();
     }
 
     public void ShowInventory()

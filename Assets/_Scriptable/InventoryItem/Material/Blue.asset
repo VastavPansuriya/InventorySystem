@@ -17,6 +17,6 @@ MonoBehaviour:
   itemDescription: Helps yoy to look better
   buyingPrice: 100
   sellingPrice: 90
-  weight: 10
-  rarity: 4
-  Quantity: 10
+  weight: 50
+  rarity: 0
+  Quantity: 0

@@ -9,7 +9,6 @@ public class ShopService
 
     private Button sellButton;
     private Button buyButton;
-
     private ItemSO currSelectedItem;
     private ItemUIButton currItemUIButton;
     private TabService tabService;
@@ -17,6 +16,7 @@ public class ShopService
     public ShopService(Button sellButton, Button buyButton)
     {
         ItemUIButton.OnItemUIButtonPress += ItemUIButton_OnItemUIButtonPress;
+
         this.sellButton = sellButton;
         this.buyButton = buyButton;
 

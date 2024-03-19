@@ -13,12 +13,12 @@ public class CurrencyService
 
     private void CurrencyService_OnWantRemoveCoin(int value)
     {
-        GlobleData.TotalCurrency -= value;
+        GlobalData.TotalCurrency -= value;
     }
 
     private void CurrencyService_OnWantAddCoin(int value)
     {
-        GlobleData.TotalCurrency += value;
+        GlobalData.TotalCurrency += value;
     }
 
     ~CurrencyService()
@@ -29,6 +29,6 @@ public class CurrencyService
 
     public bool CanPurchaseInAmmountOf(int ammount)
     {
-        return GlobleData.TotalCurrency >= ammount;
+        return GlobalData.TotalCurrency >= ammount;
     }
 }

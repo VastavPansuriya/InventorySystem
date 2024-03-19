@@ -17,6 +17,6 @@ MonoBehaviour:
   itemDescription: 'Simple Sward helps you in fight '
   buyingPrice: 100
   sellingPrice: 90
-  weight: 10
+  weight: 50
   rarity: 0
   Quantity: 10

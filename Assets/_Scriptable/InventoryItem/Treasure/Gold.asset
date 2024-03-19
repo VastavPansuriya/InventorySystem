@@ -17,6 +17,6 @@ MonoBehaviour:
   itemDescription: Gold Bar which can help you to buy new things and exchange things
   buyingPrice: 100
   sellingPrice: 90
-  weight: 10
+  weight: 50
   rarity: 2
   Quantity: 10

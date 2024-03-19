@@ -16,6 +16,7 @@ public class PlayerInventoryService
     private PlayerInventoryServiceData playerInventoryServiceData;
     private TabService tabService;
     private List<SlotController> allPlayerSlots;
+    private int currWaight;
 
     public int MaxCarriyingWaight { get => playerInventoryServiceData.maxCarriyingWaight; private set => playerInventoryServiceData.maxCarriyingWaight = value; }
 
@@ -73,7 +74,7 @@ public class PlayerInventoryService
 
     public void AddItem()
     {
-        if (currSelectedItem.weight > playerInventoryServiceData.maxCarriyingWaight)
+        if (currWaight > playerInventoryServiceData.maxCarriyingWaight)
         {
             return;
         }
@@ -85,7 +86,7 @@ public class PlayerInventoryService
                 return;
             }
         }
-
+        currWaight += currSelectedItem.weight;
         itemCount++;
 
         allPlayerSlots[itemCount].SetFilled(currSelectedItem);

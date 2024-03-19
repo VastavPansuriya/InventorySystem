@@ -1,4 +1,4 @@
-﻿public static class GlobleData
+﻿public static class GlobalData
 {
     public static int TotalCurrency { get; set; }
 }
