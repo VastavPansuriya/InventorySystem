@@ -54,7 +54,6 @@ public class ShopService
         }
         else
         {
-            Debug.Log("Not Enough Amount");
         }
     }
 

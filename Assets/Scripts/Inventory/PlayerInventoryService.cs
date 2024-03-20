@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerInventoryService
@@ -16,7 +17,7 @@ public class PlayerInventoryService
     private PlayerInventoryServiceData playerInventoryServiceData;
     private TabService tabService;
     private List<SlotController> allPlayerSlots;
-    private int currWaight;
+    private int currWaight = 0;
 
     public int MaxCarriyingWaight { get => playerInventoryServiceData.maxCarriyingWaight; private set => playerInventoryServiceData.maxCarriyingWaight = value; }
 
@@ -76,6 +77,7 @@ public class PlayerInventoryService
     {
         if (currWaight > playerInventoryServiceData.maxCarriyingWaight)
         {
+            Debug.Log("Out of waight");
             return;
         }
 
